@@ -1,0 +1,844 @@
+Set up New Mac 2022 - 22nd June 2022
+====================================
+
+A) OS / Browser Settings
+=========================
+
+https://www.cnet.com/tech/computing/change-this-annoying-trackpad-setting-right-now-on-your-mac/
+https://www.cnet.com/tech/computing/macbook-settings-to-change-as-soon-as-you-get-it-out-of-the-box/
+
+Fix Apple's dumb default touchpad settings:
+
+System Preferences > Trackpad > Point & Click > Check the checkbox for Tap to click (which is unchecked by default). 
+System Preferences > Trackpad > More Gestures > Check the checkbox for App Exposé (fifth checkbox from the top).
+System Preferences > Accessibility > Pointer Control > Trackpad Options > Check the checkbox for Enable dragging (without drag lock).
+
+https://www.swyx.io/new-mac-setup-2021
+
+Go to Startup Security Utility after you have installed Monterey 
+    - Reduce the security level 
+        - check the 2 options
+
+
+
+Update the software checkbox in Software Update option
+
+Disable Spotlight search for all miscellaneous crap except apps and system preferences
+including stupid Developer option (make sure to add Xcode.app to /Applications not /user/swyx/Applications
+
+Disable dictionary lookup: Trackpad -> Point & Click -> Look up & data detectors off
+
+Finder settings:
+Preferences → show filename extensions
+Enable showing dotfiles (just hold Cmd + Shift + . (dot) in a Finder window)
+Show path bar in footer for easier navigation
+Prune the excessive sidebar bookmarks
+create “Work” folder and pin it
+
+Sharing-
+Change computer name
+Make sure all file sharing is disabled
+
+
+TrackPad
+  - uncheck Look up and Data Detectors
+  - Secondary click  - click with 2 fingers
+  
+Finder
+- remove all color tags
+- Check show file extensions
+
+
+Keyboard
+=====
+Key Repeat -> Fast
+Delay Until Repeat -> Short
+
+
+
+1. Remove all sound effects
+
+2. Turn on FileVault ( make sure you copy this to keepassXC with the date  ) 
+
+3. Turn on Firewall
+
+4. Install homebrew : https://brew.sh
+
+    Run these two commands in your terminal to add Homebrew to your PATH:
+    
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/brtan/.zprofile
+    
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+
+
+5. Run the following commands
+
+# Show Library folder
+chflags nohidden ~/Library
+
+# Show hidden files
+defaults write com.apple.finder AppleShowAllFiles YES
+
+# Show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Prevent left and right swipe through history in Chrome
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+
+#Folder Paths
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true; killall Finder
+
+
+
+Chrome Extensions:
+==============
+Paywall blocker https://github.com/iamadamdev/bypass-paywalls-chrome/
+
+(https://dev.to/v3frankie/setup-your-mac-for-development-2020-edition-1c8a)
+
+
+B) Set up Terminal 
+==================
+
+dotfiles: https://gist.github.com/sw-yx/7fa1009e460ecb818d5e6d9ca4616a05
+
+
+Configure Hyper.js terminal / Warp termina;
+=================================
+
+brew install --cask keepassxc
+
+brew install --cask google-chrome
+
+brew install --cask google-drive
+
+brew install --cask appcleaner
+
+brew install --cask sublime-text
+
+brew install gh
+
+install wireguard from Apple Store
+
+====================
+
+>> brew install --cask hyper is working now 
+
+Download https://github.com/tonsky/FiraCode/releases 
+   - https://github.com/tonsky/FiraCode/releases
+- Install https://github.com/tonsky/FiraCode/releases - FiraCode
+    - Make sure it's enabled in Font book
+- hyper i hyper-font-ligatures
+subl .hyper.js
+- fontSize: 20,
+- fontFamily: "Fira Code", ,
+- hyper i hyper-search
+- hyper i hyper-pane
+- hyper i hypercwd
+- hyper i hyper-active-tab
+- activeTab: '🚀', ( at end of .hyper.js )
+     {preserveCWD: true,
+        // for advanced config flags please refer to https://hyper.is/#cfg
+        activeTab: '🚀', }
+
+====================
+- brew install starship
+    - echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+
+- Create plugins folder
+    - mkdir ~/.zsh
+    - cd ~/.zsh && gh repo clone zdharma-continuum/fast-syntax-highlighting
+        - echo "source $HOME/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >> ~/.zshrc
+        - source ~/.zshrc
+    - brew install wget
+        - cd ~/.zsh && wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/lib/completion.zsh
+            - echo "source $HOME/.zsh/completion.zsh" >> ~/.zshrc
+            - source ~/.zshrc
+    - cd ~/.zsh && gh repo clone zsh-users/zsh-autosuggestions
+        - echo "source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+        - source ~/.zshrc
+    - cd ~/.zsh && wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/lib/history.zsh
+        - echo "source $HOME/.zsh/history.zsh" >> ~/.zshrc
+        - source ~/.zshrc
+    - cd ~/.zsh && wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/lib/key-bindings.zsh
+        - echo "source $HOME/.zsh/key-bindings.zsh" >> ~/.zshrc
+        - source ~/.zshrc
+    - touch aliases.zsh
+        - echo "source $HOME/.zsh/aliases.zsh" >> ~/.zshrc
+        - source ~/.zshrc
+ ================      
+- zsh --version
+- which zsh
+- shell: '/bin/zsh'
+
+
+Git - Imply
+=====================
+( https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup )
+
+
+git config --global user.name "brandontan"
+
+git config --global user.email brandontan@gmail.com
+
+git config --global init.defaultBranch main
+
+git config --list
+
+
+Refer to https://gist.github.com/sw-yx/7fa1009e460ecb818d5e6d9ca4616a05
+========================================================================
+
+
+.gitignore_global
+===================
+# run "git config --global core.excludesfile ~/.gitignore_global"
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
+.vscode
+.idea
+Thumbs.db
+==================
+
+touch ~/.vimrc
+
+.vimrc
+======
+set autoindent
+set indentexpr=off
+set expandtab
+set tabstop=4
+
+set sw=4
+set textwidth=80
+set nohls
+set noshowmatch
+syntax enable
+setlocal spell spelllang=en_us
+set nospell
+set background=dark
+autocmd VimEnter * set vb t_vb=
+
+set modeline
+set nojoinspaces " pesky 2-spaces after the period thing
+set shortmess=AITstW " I hate: naggy dialogs, intros, long messages
+set noshowcmd
+
+set nowritebackup
+set noswapfile
+set nobackup
+
+" don't delete whitespace-only lines leaving insert mode:
+inoremap <CR> x<BS><CR>x<BS>
+inoremap <up> x<BS><up>
+inoremap <down> x<BS><down>
+nnoremap o ox<BS>
+nnoremap O Ox<BS>
+
+" for fzf https://github.com/junegunn/fzf
+set rtp+=/usr/local/opt/fzf
+
+" fuck everything about the 'Press ENTER' message:
+set showcmd
+set shortmess=at
+
+" 2-space indent for html and json files
+autocmd BufRead,BufNewFile *.json,*.html,*.css,*.svg set sw=2 tabstop=2
+autocmd BufRead,BufNewFile Makefile,makefile,*Makefile,*makefile set noexpandtab
+=========================================================
+
+https://snyk.io/blog/10-git-aliases-for-faster-and-productive-git-workflow/
+https://www.taniarascia.com/setting-up-a-brand-new-mac-for-development/?ck_subscriber_id=591519942
+
+.gitconfig
+===========
+[user]
+	name = brandontan
+	email = brandontan@gmail.com
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = /Users/brtan/.gitignore_global
+[alias]
+  a      = add
+  ca     = commit -a
+  cam    = commit -am
+  cm     = commit -m
+  s      = status
+  p      = push
+  pom    = push origin master
+  puom   = pull origin master
+  cob    = checkout -b
+  co     = checkout
+  fp     = fetch --prune --all
+  l      = log --oneline --decorate --graph
+  lall   = log --oneline --decorate --graph --all
+  ls     = log --oneline --decorate --graph --stat
+  lt     = log --graph --decorate --pretty=format:'%C(yellow)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset'
+====================================
+
+SSH
+====
+( Add the following contents, changing the variables for any hosts that you connect to. 
+Using the below will be the same as running ssh -i ~/.ssh/key.pem user@example.com. )
+Host myssh
+  HostName example.com
+  User user
+  IdentityFile ~/.ssh/key.pem
+ =====================================
+ Now just run the alias to connect.
+
+ssh myssh
+  
+=================================
+
+mkdir ~/.ssh && touch ~/.ssh/config
+- brew install gh
+        - ssh-keygen -t ed25519 -C "brandontan@gmail.com"
+        - eval "$(ssh-agent -s)"
+        - touch ~/.ssh/config
+        - subl ~/.ssh/config (Note: If you chose not to add a passphrase to your key, you should omit the UseKeychain line.)
+            Host *
+            AddKeysToAgent yes
+            IdentityFile ~/.ssh/id_ed25519
+            
+        - ssh-add ~/.ssh/id_ed25519 ( If you chose not to add a passphrase to your key, run the command without the -K option )
+            - Identity added: /Users/brtan/.ssh/id_ed25519 (brandontan@gmail.com)
+        - gh ssh-key add ~/.ssh/id_ed25519.pub
+	- gh auth refresh -h github.com -s admin:public_key
+        - gh auth login
+            - gh config set -h github.com git_protocol ssh
+            ✓ Configured git protocol
+            ✓ Uploaded the SSH key to your GitHub account: /Users/brtan/.ssh/id_ed25519.pub
+            ✓ Logged in as brandontan
+        - gh auth refresh -h github.com -s admin:public_key
+        - gh ssh-key add ~/.ssh/id_ed25519.pub
+            ✓ Public key added to your account
+        
+https://www.taniarascia.com/setting-up-a-brand-new-mac-for-development/
+
+.ssh/config
+===========
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsa
+
+Host myssh
+  HostName example.com
+  User user
+  IdentityFile ~/.ssh/key.pem
+  
+ > ssh myssh
+ Generate SSH key
+ =================
+ ssh-keygen -t rsa -b 4096 -C "email@example.com"
+ ssh-add -K ~/.ssh/id_rsa
+
+
+C) Set up apps/environments
+==============================
+
+Install Homebrew - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew update on m1’s have turned out to be super annoying. this helped me: arch -x86_64 brew install YOUR_PACKAGE
+
+
+Homebrew
+===========
+brew install exa
+brew install mas
+brew install thefuck
+ eval $(thefuck --alias --enable-experimental-instant-mode) [ ~/.zshrc ]
+brew install bat
+brew install git
+brew install tldr
+brew install duf
+brew install rs/tap/curlie
+brew install z
+  - . /opt/homebrew/etc/profile.d/z.sh in [.zshrc]
+brew install bpytop
+brew install lazydocker
+brew install httpie
+brew install fd
+brew install fzf
+brew install ripgrep
+brew install jless
+brew install broot
+ - use "br" ; "br -w"
+brew install iperf3
+brew install navi
+
+brew install --cask caffeine
+brew install --cask joplin
+brew install --cask nordvpn
+brew install docker
+brew install --cask charles
+brew install --cask cleanshot
+    - Disable screenshots in System Preferences
+brew install --cask visual-studio-code
+brew install --cask cyberduck
+brew install --cask anydesk
+brew install --cask postman
+brew install --cask slack
+brew install --cask vlc
+brew install --cask zoom
+brew install --cask firefox
+
+brew install --cask slack
+brew install --cask docker
+brew install --cask spotify
+brew install --cask topnotch
+brew install --cask loom
+brew install --cask balenaetcher
+brew install --cask notunes
+
+
+brew tap homebrew/cask-versions
+brew install --cask temurin8   -java for Imply
+brew reinstall --cask temurin8
+brew tap homebrew/cask-versions
+
+brew install jless
+
+brew install iproute2mac
+
+brew install --cask insomnia
+
+brew install --cask obsidian
+
+brew install ffsend	
+
+brew install --cask maccy
+
+brew install coreutils
+
+brew install duf
+
+brew install ncurses automake autoconf gcc
+
+Rust CLis
+==========
+
+https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
+
+aliases.zsh
+===========
+https://gist.github.com/sw-yx/7fa1009e460ecb818d5e6d9ca4616a05
+
+alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+alias cat="bat"
+alias l="exa"
+alias la='exa -a'
+alias ll='exa -lah'
+alias ls='exa --color=auto'
+alias cd="z"
+alias sz="source ~/.zshrc"
+alias suz="subl ~/.zshrc"
+alias mv="mv -iv"
+alias cp="cp -iv"
+alias bu="brew update && brew upgrade; brew cleanup -s ; brew missing && brew doctor; mas upgrade"
+alias po="pip3 list --outdated | awk 'NR>2 {print $1}'"
+# for fzf https://github.com/junegunn/fzf
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+#pip3 install --upgrade setuptools
+alias bp="bpytop"
+
+
+D) Setting up of Apps
+========================
+
+Websites
+===============
+
+https://desktop.github.com/
+https://topnotch.app/
+Docker client - https://hub.docker.com/editions/community/docker-ce-desktop-mac/
+PyCharm - https://www.jetbrains.com/pycharm/download/#section=mac
+IntelliJ IDEA - https://www.jetbrains.com/idea/download/#section=mac
+https://www.jetbrains.com/webstorm/download/download-thanks.html?platform=macM1
+https://developer.android.com/studio
+    - add modules up to Android 8
+    - add all SDKs except Intel
+https://nucleoapp.com/application
+https://creativecloud.adobe.com/apps/download/creative-cloud
+https://www.office.com/?auth=1 - use brandontsj@msn.com
+https://www.qnap.com/en/utilities/essentials
+https://www.techsmith.com/download-camtasia-mac-thankyou.html
+Install aws cli - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+Install gsutils - https://cloud.google.com/storage/docs/gsutil_install
+    ./google-cloud-sdk/install.sh
+    Open a new terminal
+    ./google-cloud-sdk/bin/gcloud init
+    outside of google-cloud-sdk:
+        - run gcloud components update
+        
+App Store
+==========
+LINE
+The Clock
+Xcode
+Magnet
+CopyClip
+
+Charles Proxy
+============
+1. Charles Proxy
+- need to install Rosetta
+- Install SSL Cert - System keychain
+- Always Trust
+- Check that "This Certificate is marked as trusted for all users"
+
+
+
+
+Installing multiple versions of Node
+===================================
+
+Don't install Node.js through Homebrew. Use nvm (below).
+
+Use Node Version Manager (nvm) to install Node.js. This allows you to easily switch between Node versions, which is essential.
+
+1. curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | zsh
+
+Added to .zshrc:
+export NVM_DIR="$HOME/.nvm"
+  17   │ [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+  18   │ [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+2. nvm install node
+
+3. Restart terminal and run the final command.
+
+4.  nvm use node
+Now using node v17.1.0 (npm v8.1.2)
+
+5. Confirm that you are using the latest version of Node and npm.
+
+node -v && npm -v
+
+6. node -v && npm -v
+v17.1.0
+8.1.2
+
+7. For later, here's how to update nvm.
+nvm install node --reinstall-packages-from=node
+
+8. Here's how to switch to another version and use it.
+
+nvm install xx.xx
+
+nvm use xx.xx
+
+And to set the default:
+
+nvm alias default xx.xx
+
+
+
+=============================================
+Setting up Python Dev Environment - Pycharm
+=================================================
+Reference : https://newbedev.com/pycharm-with-pyenv
+ - cd ~
+ - brew install pyenv
+ - brew install pyenv-virtualenv
+ - How to Set Up Your MacOS PATH for pyenv
+ 
+    To avoid them accidentally linking against a Pyenv-provided Python, add the following line into your interactive shell's configuration:
+    
+    alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+    
+    For Zsh:
+        
+        Dependencies:
+        
+        brew install openssl readline sqlite3 xz zlib
+        
+         If you need to have openssl@3 first in your PATH, run:
+                - echo 'export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"' >> ~/.zshrc
+                - source ~/.zshrc
+
+        To add additional certificates, place .pem files in
+        /opt/homebrew/etc/openssl@3/certs
+
+        and run
+        /opt/homebrew/opt/openssl@3/bin/c_rehash
+
+        For compilers to find openssl@3 you may need to set:
+            export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+            export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+
+       For pkg-config to find openssl@3 you may need to set:
+             export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+        
+       ==> zlib
+       For compilers to find zlib you may need to set:
+            export LDFLAGS="-L/opt/homebrew/opt/zlib/lib"
+            export CPPFLAGS="-I/opt/homebrew/opt/zlib/include"
+
+        For pkg-config to find zlib you may need to set:
+            export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig"
+        
+        MacOS, if Pyenv is installed with Homebrew:
+
+        echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
+
+        echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+            
+        brew upgrade pyenv
+        
+ 
+    - echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+    - echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+    - echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
+    - source ~/.zshrc
+    - run "reset" in terminal
+    - pyenv install --list
+    - eval "$(pyenv virtualenv-init -)" >> ~/.zshrc
+    - pyenv versions
+    - pyenv install 3.10.2
+        - Installed Python-3.10.2 to /Users/brtan/.pyenv/versions/3.10.2
+    - pyenv virtualenv 3.10.2 current-env-3.10.2   
+    - pyenv virtualenvs
+    - source ~/.zshrc
+    - pyenv activate current-env-3.10.2
+         - Need to run pip3 install git+https://github.com/bitmovin/bitmovin-api-sdk-python.git in .pyenv environment
+         - /Library/Developer/CommandLineTools/usr/bin/python3 -m pip install --upgrade pip
+    
+    pyenv deactivate
+    pyenv uninstall my-virtual-env
+    pyenv virtualenv-delete my-virtual-env
+    
+    In Pycharm, 
+         set Python Interpreter to that of current-env-3.10.0
+        
+        - use this in Pycharm https://bitmovin.slack.com/files/UH0JYR4BF/F02MQBD9V71/screen_shot_2021-11-22_at_10.45.33.png
+        - https://cln.sh/ZijJ0U 
+    
+ 
+ ( Refer to https://mkyong.com/java/how-to-install-java-on-mac-osx/#homebrew-install-latest-java-on-macos )
+    - brew search java
+    - brew info java
+    - brew install java
+    - sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+    - echo 'export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"' >> ~/.zshrc
+    - export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+        openjdk 17.0.1 2021-10-19
+        OpenJDK Runtime Environment Homebrew (build 17.0.1+0)
+        OpenJDK 64-Bit Server VM Homebrew (build 17.0.1+0, mixed mode, sharing)
+	
+	
+	
+	=============Managing different Java versions ===========
+	
+	https://chamikakasun.medium.com/how-to-manage-multiple-java-version-in-macos-e5421345f6d0
+	
+	brew install jenv
+	for .zshrc
+		echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.zshrc
+		echo 'eval "$(jenv init -)"' >> ~/.zshrc
+	
+	source ~/.zshrc
+	brew install --cask temurin8
+	/usr/libexec/java_home -V
+		- /Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home
+		
+
+	Syntax: 
+	jenv add <your_jdk_path>
+	Example:
+	jenv add /Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home
+	
+	jenv versions
+	jenv global 14.0
+	jenv local 11
+	java -version
+	Setting shell instance Java version:
+		If you need to run a different version of Java in your shell(i.e terminal window), you can run the following command.
+
+jenv shell openjdk64-1.8.0.252
+	
+       
+Set up in IntelliJ IDEA:
+========================
+    You will need to copy the file settings.xml you can find in the root folder of the repository to ˜/.m2/settings.xml to be able to access internal Maven dependencies like bitmovin-java.
+    cp settings.xml ~/.m2/settings.xml
+    Project -> Module Settings -> 
+    https://cln.sh/TkNoez
+    
+Setting Visual Studio 
+======================
+https://github.com/taniarascia/dotfiles
+Visual Studio Code
+Press CMD + SHIFT + P and click "Install code command in PATH".
+View Dotfiles for keyboard shortcuts and settings
+Install New Moon Theme
+Install GitLens
+Install Highlight Matching Tag
+Install ESLint
+Install Prettier
+Install Jest
+Install Jest Runner
+
+==========
+
+Emojis: https://matthewpalmer.net/rocket/
+
+Password Manager: I use 1password for company and lastpass for personal
+
+Window Manager: https://www.spectacleapp.com/ launch at login
+
+Clipboard Manager: https://clipy-app.com/ or https://yippy.mattdavo.com/ (untested)
+
+Loom: https://www.loom.com/desktop
+
+Zoom: https://zoom.us/download
+
+Screenshots: https://cleanshot.com/ (previously used https://zapier.com/zappy). Browser extension - Lightshot
+
+Caffeine (Keep Mac awake for talks): https://intelliscapesolutions.com/apps/caffeine
+
+used to be http://lightheadsw.com/caffeine/
+maintained version: Amphetamine (thanks Matt Mischuk!)
+NoTunes - disable itunes/apple music
+
+Video capture: https://getkap.co/
+
+Dual Screen: https://www.duetdisplay.com/
+
+Gifs: Licecap
+
+Slack or Discord
+
+OBS: https://obsproject.com/
+
+Transcribing: https://www.descript.com/download/mac
+
+SkyFonts: https://www.fonts.com/web-fonts/google
+
+Microsoft Todo: https://apps.apple.com/app/apple-store/id1274495053?mt=8
+
+Stretchly: https://hovancik.net/stretchly/
+
+Disk Space: Disk Inventory X - you can clean node modules with this bash command or as a cronjob
+
+Replay: download - https://www.notion.so/Replay-Docs-56758667f53a4d51b7c6fc7a641adb02
+
+SimpleNote: https://apps.apple.com/us/app/simplenote/id692867256?ls=1&mt=12
+
+Superhuman for Mac and https://mail.superhuman.com
+
+Notion: https://www.notion.so/desktop
+
+https://chrome.google.com/webstore/detail/notion-web-clipper/knheggckgoiihginacbkhaalnibhilkk?hl=en
+App Search/Utils: https://www.alfredapp.com/
+
+set to Alfred Dark
+airdrop to iphone/ipad
+Cupcake Ipsum
+Editor: Download VS Code (I used to use Insiders but the popups are super annoying). use Settings Sync to sync across machines
+
+have to set up powerline fonts “Meslo LG M for Powerline” (download)
+
+auto-close-tag v0.5.6
+
+auto-rename-tag v0.0.15
+
+Bookmarks v9.1.0
+
+code-settings-sync v3.1.2
+
+debugger-for-chrome v4.10.2
+
+es7-react-js-snippets v1.8.7
+
+graphql-for-vscode v1.12.1
+
+mdx v0.1.0
+
+prettier-vscode v1.6.1
+
+python v2018.9.2
+
+python v0.2.3
+
+rainbow-brackets v0.0.6 - this is now deprecated, use the native "editor.bracketPairColorization.enabled": true
+
+shades-of-purple v3.17.0
+
+vscode-graphql v0.1.5
+
+vscode-import-cost v2.9.0
+
+vscode-styled-components v0.0.23
+
+vscode-wakatime v1.2.3
+
+TabNine AI completions
+
+GitHub Copilot
+
+to try: File Utils - recommended by Stolinski
+
+Here’s the full list you can run from command line
+
+
+
+=====
+
+code --install-extension 2gua.rainbow-brackets
+code --install-extension ahmadawais.shades-of-purple
+code --install-extension austenc.tailwind-docs
+code --install-extension bradlc.vscode-tailwindcss
+code --install-extension cpylua.language-postcss
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension dsznajder.es7-react-js-snippets
+code --install-extension esbenp.prettier-vscode
+code --install-extension formulahendry.auto-close-tag
+code --install-extension formulahendry.auto-rename-tag
+code --install-extension GabrielNordeborn.vscode-graphiql-explorer
+code --install-extension GitHub.copilot
+code --install-extension golang.go
+code --install-extension heybourn.headwind
+code --install-extension jpoissonnier.vscode-styled-components
+code --install-extension kgscott.retreon
+code --install-extension kumar-harsh.graphql-for-vscode
+code --install-extension luyizhi.vscode-graphql
+code --install-extension ms-python.python
+code --install-extension ms-python.vscode-pylance
+code --install-extension ms-toolsai.jupyter
+code --install-extension msjsdiag.debugger-for-chrome
+code --install-extension NickScialli.svelte-dark
+code --install-extension octref.vetur
+code --install-extension oderwat.indent-rainbow
+code --install-extension sdras.night-owl
+code --install-extension silvenon.mdx
+code --install-extension svelte.svelte-vscode
+code --install-extension TabNine.tabnine-vscode
+code --install-extension ThreadHeap.serverless-ide-vscode
+code --install-extension tht13.python
+code --install-extension WakaTime.vscode-wakatime
+code --install-extension Wattenberger.footsteps
+code --install-extension wix.vscode-import-cost
+
+
+======
+
+Joplin - modify rendered CSS
+
+cd ~/.config/joplin-desktop
+git clone https://github.com/tessus/joplin-custom-css.git
+ln -s joplin-custom-css/Dark/userchrome.css
+ln -s joplin-custom-css/Dark/userstyle.css
+cd joplin-custom-css
+git checkout -b my-css
+# make changes to the css files and commit them
+# when a new update is available, merge or rebase
+git fetch origin master:master && git rebase master
